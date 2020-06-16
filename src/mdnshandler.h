@@ -24,7 +24,6 @@ SOFTWARE. */
 #define _MDNSHANDLER_H
 
 #include "main.h"
-#include "jsonconfig.h"
 #include <ArduinoLog.h>
 
 #ifdef ESP8266

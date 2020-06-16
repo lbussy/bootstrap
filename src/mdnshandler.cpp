@@ -34,7 +34,7 @@ void mdnssetup() {
 
 void mdnsreset() {
     MDNS.end();
-    if (!MDNS.begin(config.hostname)) {
+    if (!MDNS.begin(HOSTNAME)) {
         Log.error(F("Error resetting MDNS responder."));
     } else {
         Log.notice(F("mDNS responder restarted, hostname: %s.local." CR), WiFi.getHostname());

@@ -45,24 +45,15 @@ void printTimestamp(Print* _logOutput) {
 
 void printDot()
 {
-    if (!config.copconfig.rpintscompat)
-    {
-        Serial.print(F("."));
-    }
+    Serial.print(F("."));
 }
 
 void printChar(const char * chr)
 {
-    if (!config.copconfig.rpintscompat)
-    {
-        Serial.println(chr);
-    }
+    Serial.println(chr);
 }
 
 void printCR()
 {
-    if (!config.copconfig.rpintscompat)
-    {
-        Serial.println();
-    }
+    Serial.println();
 }

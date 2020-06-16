@@ -42,14 +42,7 @@ void doWiFi(bool dontUseStoredCreds)
     // myAsyncWifiManager.setSaveParamsCallback(saveParamsCallback); // Called after parameters are saved via params menu or wifi config
     // myAsyncWifiManager.setWebServerCallback(webServerCallback); // Called after webserver is setup
 
-    if (!config.copconfig.rpintscompat)
-    {
-        myAsyncWifiManager.setDebugOutput(true); // Verbose debug is enabled by default
-    }
-    else
-    {
-        myAsyncWifiManager.setDebugOutput(false);
-    }
+    myAsyncWifiManager.setDebugOutput(true); // Verbose debug is enabled by default
 
     std::vector<const char *> _wfmPortalMenu = {
         "wifi",
@@ -76,7 +69,7 @@ void doWiFi(bool dontUseStoredCreds)
     { // Voluntary portal
         blinker.attach_ms(APBLINK, wifiBlinker);
         myAsyncWifiManager.setConfigPortalTimeout(120);
-        if (myAsyncWifiManager.startConfigPortal(config.apconfig.ssid, config.apconfig.passphrase))
+        if (myAsyncWifiManager.startConfigPortal(APNAME, AP_PASSWD))
         {
             // We finished with portal, do we need this?
         }
@@ -96,7 +89,7 @@ void doWiFi(bool dontUseStoredCreds)
         blinker.attach_ms(STABLINK, wifiBlinker);
         myAsyncWifiManager.setConnectTimeout(30);
         myAsyncWifiManager.setConfigPortalTimeout(120);
-        if (!myAsyncWifiManager.autoConnect(config.apconfig.ssid, config.apconfig.passphrase))
+        if (!myAsyncWifiManager.autoConnect(APNAME, AP_PASSWD))
         {
             Log.warning(F("Failed to connect and/or hit timeout." CR));
             blinker.detach(); // Turn off blinker
@@ -119,7 +112,7 @@ void doWiFi(bool dontUseStoredCreds)
 #ifdef ESP8266
             WiFi.hostname(config.hostname);
 #elif defined ESP32
-            WiFi.setHostname(config.hostname);
+            WiFi.setHostname(HOSTNAME);
 #endif
         }
     }
