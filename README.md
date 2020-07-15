@@ -1,6 +1,6 @@
 # Project Bootstrap
 
-This is a generic PlatformIO project for ESP32/8266 including WiFi and debug logging.  It is intended to quickly give a semi-blank slate for new progects or just tests, without having to worry about coding in frequently used functions like Wifi and debug logging.
+Bootstrap is a generic PlatformIO project for ESP32/8266, including WiFi and debug logging.  I created it to quickly give a semi-blank slate for new projects or just tests, without having to worry about coding in commonly used functions like WiFi and debug logging.
 
 Features include:
 
