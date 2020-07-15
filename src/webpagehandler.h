@@ -36,6 +36,7 @@ SOFTWARE. */
 
 #include <ESPmDNS.h>
 #include <ArduinoLog.h>
+#include <SPIFFS.h>
 #include <FS.h>
 #include <ESPAsyncWebServer.h>
 #include <SPIFFSEditor.h>
