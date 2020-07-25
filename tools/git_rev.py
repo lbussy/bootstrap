@@ -2,7 +2,7 @@
 
 # Copyright (C) 2019-2020 Lee C. Bussy (@LBussy)
 
-# This file is part of Lee Bussy's Keg Cop (keg-cop).
+# This file is part of Lee Bussy's Bootstrap (bootstrap).
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,42 @@
 # SOFTWARE.
 
 import subprocess
+import os
 
-# Get Git project name
+if os.name == "nt":
+    null = "nul"
+else:
+    null = "/dev/null"
+
+# Get Git project name (directory name)
 projcmd = "git rev-parse --show-toplevel"
 project = subprocess.check_output(projcmd, shell=True).decode().strip()
 project = project.split("/")
 project = project[len(project)-1]
 
 # Get 0.0.0 version from latest Git tag
-tagcmd = "git describe --tags --abbrev=0"
-version = subprocess.check_output(tagcmd, shell=True).decode().strip()
+try:
+    tagcmd = "git describe --tags --abbrev=0 2> " + null
+    version = subprocess.check_output(tagcmd, shell=True).decode().strip()
+except:
+    print("Warning: Unable to determine git tags, using '0.0.0' as version.")
+    version = "0.0.0"
 
 # Get latest commit short from Git
-revcmd = "git log --pretty=format:'%h' -n 1"
-commit = subprocess.check_output(revcmd, shell=True).decode().strip()
+try:
+    revcmd = "git log --pretty=format:'%h' -n 1 2> " + null
+    commit = subprocess.check_output(revcmd, shell=True).decode().strip()
+except:
+    print("Warning: Unable to determine git commit, using 'abcdef0' as commit.")
+    commit = "'abcdef0'"
 
 # Get branch name from Git
-branchcmd = "git rev-parse --abbrev-ref HEAD"
-branch = subprocess.check_output(branchcmd, shell=True).decode().strip()
+try:
+    branchcmd = "git rev-parse --abbrev-ref HEAD 2> " + null
+    branch = subprocess.check_output(branchcmd, shell=True).decode().strip()
+except:
+    print("Warning: Unable to determine git branch, using 'master' as branch.")
+    branch = "master"
 
 # Make all available for use in the macros
 print("-DPIO_SRC_NAM={0}".format(project))
