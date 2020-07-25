@@ -1,6 +1,6 @@
 /* Copyright (C) 2019-2020 Lee C. Bussy (@LBussy)
 
-This file is part of Lee Bussy's Brew Bubbbles (brew-bubbles).
+This file is part of Lee Bussy's Bootstrap (bootstrap).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,11 +32,10 @@ SOFTWARE. */
 #include <ESP8266WiFi.h>
 #elif defined ESP32
 #include <WiFi.h>
+#include <SPIFFS.h>
 #endif
 
-#include <ESPmDNS.h>
 #include <ArduinoLog.h>
-#include <SPIFFS.h>
 #include <FS.h>
 #include <ESPAsyncWebServer.h>
 #include <SPIFFSEditor.h>

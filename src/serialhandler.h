@@ -30,14 +30,11 @@ SOFTWARE. */
 
 void serial();
 void toggleRPCompat(bool);
-void printTimestamp(Print* _logOutput);
+void printTimestamp(Print *_logOutput);
 void printDot();
 void printChar(const char *);
 void printCR();
 
 #define prefLen 22
 
-extern struct Config config;
-
 #endif //_SERIALLOG_H
- 

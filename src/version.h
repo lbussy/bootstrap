@@ -30,10 +30,10 @@ SOFTWARE. */
 #define stringify(s) _stringifyDo(s)
 #define _stringifyDo(s) #s
 
-const char* project();
-const char* build();
-const char* branch();
-const char* version();
+const char *project();
+const char *build();
+const char *branch();
+const char *version();
 
 int versionCompare(String, String);
 

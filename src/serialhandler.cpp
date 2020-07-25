@@ -22,7 +22,8 @@ SOFTWARE. */
 
 #include "serialhandler.h"
 
-void serial() {
+void serial()
+{
     _delay(3000); // Delay to allow a monitor to start
     Serial.begin(BAUD);
     Serial.flush();
@@ -33,7 +34,8 @@ void serial() {
     Log.notice(F("Serial logging started at %l." CR), BAUD);
 }
 
-void printTimestamp(Print* _logOutput) {
+void printTimestamp(Print *_logOutput)
+{
     time_t now;
     time_t rawtime = time(&now);
     struct tm ts;
@@ -48,7 +50,7 @@ void printDot()
     Serial.print(F("."));
 }
 
-void printChar(const char * chr)
+void printChar(const char *chr)
 {
     Serial.println(chr);
 }

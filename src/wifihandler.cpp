@@ -1,6 +1,6 @@
 /* Copyright (C) 2019-2020 Lee C. Bussy (@LBussy)
 
-This file is part of Lee Bussy's Brew Bubbbles (brew-bubbles).
+This file is part of Lee Bussy's Bootstrap (bootstrap).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -81,7 +81,7 @@ void doWiFi(bool dontUseStoredCreds)
             _delay(3000);
             digitalWrite(LED, HIGH);
             Log.notice(F("Hit timeout for on-demand portal, exiting." CR));
-            setDoReset();
+            resetController();
         }
     }
     else
@@ -110,7 +110,7 @@ void doWiFi(bool dontUseStoredCreds)
             blinker.detach();        // Turn off blinker
             digitalWrite(LED, HIGH); // Turn off LED
 #ifdef ESP8266
-            WiFi.hostname(config.hostname);
+            WiFi.hostname(HOSTNAME);
 #elif defined ESP32
             WiFi.setHostname(HOSTNAME);
 #endif

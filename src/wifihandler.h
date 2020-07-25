@@ -30,7 +30,7 @@ SOFTWARE. */
 
 #ifdef ESP8266
 #include <ESP8266WiFi.h>
-#include <WiFiManager.h>
+#include <AsyncWiFiManager.h>
 #endif
 #ifdef ESP32
 #include <WiFi.h>
@@ -52,10 +52,6 @@ void preSaveConfigCallback();
 void saveConfigCallback();
 void saveParamsCallback();
 void webServerCallback();
-
-extern struct Config config;
-extern const size_t capacitySerial;
-extern const size_t capacityDeserial;
 
 struct tcp_pcb;
 extern struct tcp_pcb *tcp_tw_pcbs;

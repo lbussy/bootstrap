@@ -22,22 +22,42 @@ SOFTWARE. */
 
 #include "mdnshandler.h"
 
-void mdnssetup() {
-    if (!MDNS.begin(WiFi.getHostname())) { // Start the mDNS responder
+void mdnssetup()
+{
+#ifdef ESP8266
+    if (!MDNS.begin(WiFi.hostname())) // Start the mDNS responder
+#elif defined ESP32
+    if (!MDNS.begin(WiFi.getHostname())) // Start the mDNS responder
+#endif
+    {
         Log.error(F("Error setting up mDNS responder." CR));
-    } else {
+    }
+    else
+    {
+#ifdef ESP8266
+        Log.notice(F("mDNS responder started for %s.local." CR), WiFi.hostname().c_str());
+#elif defined ESP32
         Log.notice(F("mDNS responder started for %s.local." CR), WiFi.getHostname());
+#endif
         MDNS.addService("http", "tcp", PORT);
         Log.notice(F("HTTP registered via mDNS on port %i." CR), PORT);
     }
 }
 
-void mdnsreset() {
+void mdnsreset()
+{
     MDNS.end();
-    if (!MDNS.begin(HOSTNAME)) {
+    if (!MDNS.begin(HOSTNAME))
+    {
         Log.error(F("Error resetting MDNS responder."));
-    } else {
+    }
+    else
+    {
+#ifdef ESP8266
+        Log.notice(F("mDNS responder restarted, hostname: %s.local." CR), WiFi.hostname().c_str());
+#elif defined ESP32
         Log.notice(F("mDNS responder restarted, hostname: %s.local." CR), WiFi.getHostname());
+#endif
         MDNS.addService("http", "tcp", 80);
     }
 }

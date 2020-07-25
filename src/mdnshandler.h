@@ -28,15 +28,13 @@ SOFTWARE. */
 
 #ifdef ESP8266
 #include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
 #elif defined ESP32
 #include <WiFi.h>
-#endif
-
 #include <ESPmDNS.h>
+#endif
 
 void mdnssetup();
 void mdnsreset();
-
-extern struct Config config;
 
 #endif // _MDNSHANDLER_H

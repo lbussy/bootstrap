@@ -1,6 +1,6 @@
 /* Copyright (C) 2019-2020 Lee C. Bussy (@LBussy)
 
-This file is part of Lee Bussy's Brew Bubbbles (brew-bubbles).
+This file is part of Lee Bussy's Bootstrap (bootstrap).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ void initWebServer()
         else
         {
             Log.verbose(F("Serving 404." CR));
-            request->redirect("/404/");
+            request->send(404, "text/plain", "Page not found.");
         }
     });
 
@@ -48,7 +48,11 @@ void initWebServer()
     server.begin();
 
     Log.notice(F("Async HTTP server started on port %l." CR), PORT);
+#ifdef ESP8266
+    Log.verbose(F("Open: http://%s.local to view controller application." CR), WiFi.hostname().c_str());
+#elif defined ESP32
     Log.verbose(F("Open: http://%s.local to view controller application." CR), WiFi.getHostname());
+#endif
 }
 
 void setRegPageAliases()
